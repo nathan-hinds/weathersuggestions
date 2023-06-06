@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Clothing Suggestion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <style>
+        .weather-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .carousel-container {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        #image-carousel img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>
+</head>
+<body>
+    <h1>Weather Clothing Suggestion</h1>
+    <form method="POST">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if temperature and suggestion %}
+    <h2>Temperature in {{ city }}:</h2>
+    <h3>{{ temperature }}°F</h3>
+    <i class="wi {{ icon_class }} weather-icon"></i>
+
+    <p>{{ suggestion }}</p>
+
+    {% if temperature >= 80 %}
+    <div class="carousel-container">
+        <div id="image-carousel">
+            <img src="https://example.com/image1.jpg" alt="Image 1">
+            <img src="https://example.com/image2.jpg" alt="Image 2">
+            <img src="https://example.com/image3.jpg" alt="Image 3">
+        </div>
+    </div>
+    {% endif %}
+
+    {% endif %}
+
+    {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#image-carousel').slick();
+        });
+    </script>
+</body>
+</html>
